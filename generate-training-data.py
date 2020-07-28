@@ -26,10 +26,6 @@ def get_images():
             #for i in range(2011):
             cv2.imwrite('img'+str(cnt1)+'.jpg',frame[100:300,100:300])
             cnt1=cnt1+1
-            #if cnt1==2010:
-            #    cap.release()
-            #    cv2.destroyAllWindows()
-            #    break
                 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
