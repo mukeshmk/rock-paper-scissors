@@ -12,5 +12,4 @@ play "Rock Paper Scissors" with your computer using computer vision.
 
 Instructions about the task can be found [here](instructions.md)
 
-ok
-
+not ok
