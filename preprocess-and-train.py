@@ -2,7 +2,7 @@ import os
 import cv2
 from model import generate_model
 
-TRAINING_DATA_DIR = "training_data"
+TRAINING_DATA_DIR = "C:\\Users\\Manish Sehrawat\\Downloads\\training_data"
 
 # here write code to pre process the images as required
 # but make sure to have a copy of the original training data
@@ -10,7 +10,13 @@ TRAINING_DATA_DIR = "training_data"
 # pre-processing on the fly is possible because this is small project and
 # not a lot of images will be there as well.
 def preprocess(img):
-    # your code goes here
+    
+    #Image Resizing
+    width = 225
+    height = 225
+    dimensions = (width,height)
+    img = cv2.resize(img,dimensions,interpolation = cv2.INTER_LINEAR)
+    img = cv2.GaussianBlur(img,(5,5),0)
     return img
 
 # NOTE: This method will only work if you have followed the same folder strucutre as I mentioned
