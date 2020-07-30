@@ -47,7 +47,7 @@ def create_model(input_shape, num_classes):
 class myCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
         if(logs.get("accuracy") >= 0.99):
-            print("Reached 99% accuracy so cancelling training!")
+            print("Reached 99% accuracy, cancelling training!")
             self.model.stop_training = True
             
 def generate_model(X, y):
