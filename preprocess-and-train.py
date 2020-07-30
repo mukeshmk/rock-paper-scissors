@@ -11,7 +11,7 @@ TRAINING_DATA_DIR = "training_data"
 # not a lot of images will be there as well.
 def preprocess(img):
     # your code goes here
-     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #Converts images to gray
+    #img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #Converts images to gray
     img = cv2.resize(img,(225,225)) #Resizes images to 225 x 225
     return img
 
