@@ -11,3 +11,5 @@ play "Rock Paper Scissors" with your computer using computer vision.
 6. make sure to `deactivate` once your done.
 
 Instructions about the task can be found [here](instructions.md)
+
+not ok

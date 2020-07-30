@@ -67,3 +67,4 @@ def generate_model(X, y):
 
         # save the model for later use
         model.save("rock-paper-scissors-model.h5")
+len(CLASS_MAP)
