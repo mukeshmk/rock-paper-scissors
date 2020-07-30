@@ -10,6 +10,7 @@ TRAINING_DATA_DIR = "training_data"
 # pre-processing on the fly is possible because this is small project and
 # not a lot of images will be there as well.
 def preprocess(img):
+    img = cv2.resize(img,(225,225))
     # your code goes here
     return img
 
