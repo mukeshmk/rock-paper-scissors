@@ -11,7 +11,23 @@ TRAINING_DATA_DIR = "training_data"
 # not a lot of images will be there as well.
 def preprocess(img):
     # your code goes here
-    return img
+    scale_percent = 40  # percent of original size
+    width = int(img.shape[1] * scale_percent / 100)
+    height = int(img.shape[0] * scale_percent / 100)
+    dim = (width, height)
+
+    # resize image
+    img_resize = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
+    # Converting color image to grayscale image
+    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Gaussian_blurred_img=np.hstack([cv2.GaussianBlur(img_resize,(9,9),0)])
+
+    # Creating our sharpening filter
+    filter = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
+    # Applying cv2.filter2D function on our image
+    final_img = cv2.filter2D(gray_img, -1, filter)
+    return  final_img
 
 # NOTE: This method will only work if you have followed the same folder strucutre as I mentioned
 # if not update this code below
