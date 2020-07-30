@@ -45,7 +45,7 @@ def main():
     # which will be used in model generation
     X, y = get_dataset()
     # this line will generate a tensorflow model and save it as rock-paper-scissors-model.h5 file
-    generate_model(X, y)
+    #generate_model(X, y)
 
 if __name__ == "__main__":
     main()
