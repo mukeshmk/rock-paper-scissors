@@ -44,6 +44,12 @@ def create_model(input_shape, num_classes):
     ])
     return model
 
+class myCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs={}):
+        if(logs.get("accuracy") >= 0.99):
+            print("Reached 99% accuracy so cancelling training!")
+            self.model.stop_training = True
+            
 def generate_model(X, y):
 
     dataset, labels = X, y
@@ -61,9 +67,9 @@ def generate_model(X, y):
                       metrics=['accuracy'])
 
         model.summary()
-
+        callback = myCallback()
         # start training
-        model.fit(np.array(dataset), np.array(labels), epochs=15)
+        model.fit(np.array(dataset), np.array(labels), epochs=15,callbacks=[callback])
 
         # save the model for later use
         model.save("rock-paper-scissors-model.h5")
