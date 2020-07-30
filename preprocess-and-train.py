@@ -12,6 +12,7 @@ TRAINING_DATA_DIR = "training_data"
 def preprocess(img):
     # your code goes here
     img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    img = cv2.cvtColor(img,(5,5),0)
     img = cv2.resize(img,(255,255))
     return img
 
