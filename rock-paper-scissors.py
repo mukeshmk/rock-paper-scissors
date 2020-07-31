@@ -48,7 +48,7 @@ def main():
     
     pred = model.predict(np.array([img]))
     move_made_by_you = mapper(np.argmax(pred[0]))
-    print(move_made_by_you)
+    #print(move_made_by_you)
 
     moves ={'rock':'scissors',
             'scissors':'paper',
