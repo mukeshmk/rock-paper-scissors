@@ -40,18 +40,24 @@ def get_images():
 def make_directory():
     gesture = input('enter the gesture for which data is being collected')
     present_dir = os.getcwd()
+    print(present_dir)
     print(present_dir.split('\\')[-1])
     print(present_dir.split('\\')[-2])
     if present_dir.split('\\')[-2] == 'training_data':
         os.chdir('../')
     else:
         os.chdir('./training_data')
-    os.mkdir(gesture)
-    os.chdir(gesture)
-    get_images()
+    if gesture is not 'empty':
+        os.mkdir(gesture)
+        os.chdir(gesture)
+        get_images()
+        
+    else:
+        os.mkdir(gesture)
+        
 
 def four_image_category_collection():
-    for i in range(3):
+    for i in range(4):
         make_directory()
 
 
