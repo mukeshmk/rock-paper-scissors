@@ -16,32 +16,40 @@ def mapper(value):
     return CLASS_MAP[value]
 
 def create_model(input_shape, num_classes):
-    model = keras.models.Sequential([
-        # NOTE the input shape is the desired size of the image with 3 bytes color
-        # This is the first convolution
-        # With 64 filters and a kernel_size of (3, 3)
-        # DOCS: https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D
-        keras.layers.Conv2D(64, (3,3), activation='relu', input_shape=input_shape),
-        keras.layers.MaxPooling2D(2, 2),
-        # The second convolution
-        keras.layers.Conv2D(64, (3,3), activation='relu'),
-        keras.layers.MaxPooling2D(2,2),
-        # The third convolution
-        keras.layers.Conv2D(128, (3,3), activation='relu'),
-        keras.layers.MaxPooling2D(2,2),
-        # The fourth convolution
-        keras.layers.Conv2D(128, (3,3), activation='relu'),
-        keras.layers.MaxPooling2D(2,2),
-        # The fifth convolution
-        keras.layers.Conv2D(128, (3,3), activation='relu'),
-        keras.layers.MaxPooling2D(2,2),
-        # Flatten the results to feed into a DNN
-        keras.layers.Flatten(),
+#     model = keras.models.Sequential([
+#         # NOTE the input shape is the desired size of the image with 3 bytes color
+#         # This is the first convolution
+#         # With 64 filters and a kernel_size of (3, 3)
+#         # DOCS: https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D
+#         keras.layers.Conv2D(64, (3,3), activation='relu', input_shape=input_shape),
+#         keras.layers.MaxPooling2D(2, 2),
+#         # The second convolution
+#         keras.layers.Conv2D(64, (3,3), activation='relu'),
+#         keras.layers.MaxPooling2D(2,2),
+#         # The third convolution
+#         keras.layers.Conv2D(128, (3,3), activation='relu'),
+#         keras.layers.MaxPooling2D(2,2),
+#         # The fourth convolution
+#         keras.layers.Conv2D(128, (3,3), activation='relu'),
+#         keras.layers.MaxPooling2D(2,2),
+#         # The fifth convolution
+#         keras.layers.Conv2D(128, (3,3), activation='relu'),
+#         keras.layers.MaxPooling2D(2,2),
+#         # Flatten the results to feed into a DNN
+#         keras.layers.Flatten(),
+#         keras.layers.Dropout(0.5),
+#         # 512 neuron hidden layer
+#         keras.layers.Dense(512, activation='relu'),
+#         keras.layers.Dense(num_classes, activation='softmax')
+#     ])
+    base_model = VGG16(weights='imagenet',include_top=False,input_shape=(255,255,3))
+    base_model.trainable = False
+    model = tf.keras.models.Sequential([
+        base_model,
+        keras.layers.GlobalAveragePooling2D(),
+        keras.layers.Dense(512,activation='relu'),
         keras.layers.Dropout(0.5),
-        # 512 neuron hidden layer
-        keras.layers.Dense(512, activation='relu'),
-        keras.layers.Dense(num_classes, activation='softmax')
-    ])
+        keras.layers.Dense(4,activation='softmax')
     return model
 
 class myCallback(tf.keras.callbacks.Callback):
