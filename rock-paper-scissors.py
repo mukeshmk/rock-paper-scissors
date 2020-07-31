@@ -42,6 +42,10 @@ def main():
         
         roi = frame[100:500,100:500]
         img = cv2.cvtColor(roi,cv2.COLOR_BGR2RGB)
+        img = cv2.GaussianBlur(img,(5,5),0)
+        img = cv2.Canny(img,50,60)
+        img = cv2.resize(img,(255,255))
+        img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
         img = cv2.resize(img,(255,255))
         
         pred = model.predict(np.array([img]))
