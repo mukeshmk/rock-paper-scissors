@@ -98,9 +98,8 @@ def main():
         k = cv2.waitKey(10)
         if k == ord('q'):
             break
-
-    cap.release()
-    cv2.destroyAllWindows()
+cap.release()
+cv2.destroyAllWindows()
 
     # once you have written the code to play the game uncommend the below lines 
     # and place them where required so that the model can predict
