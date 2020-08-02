@@ -11,6 +11,18 @@ TRAINING_DATA_DIR = "training_data"
 # not a lot of images will be there as well.
 def preprocess(img):
     # your code goes here
+    def preprocess(img):
+    #img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    #print('1',img.shape)
+    img = cv2.GaussianBlur(img,(5,5),0)
+    #print('2',img.shape)
+    img = cv2.Canny(img,50,60)
+    #print('3',img.shape)
+    img = cv2.resize(img,(255,255))
+    #print('4',img.shape)
+    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    #print('5',img.shape)
     return img
 
 # NOTE: This method will only work if you have followed the same folder strucutre as I mentioned
