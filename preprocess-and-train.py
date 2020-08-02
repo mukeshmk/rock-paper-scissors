@@ -15,7 +15,6 @@ def preprocess(img):
     dimensions = (width, height)
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     img = cv2.resize(img,dimensions)
-    img = cv2.GaussianBlur(img, (5, 5), 0)
     return img
 
 # NOTE: This method will only work if you have followed the same folder strucutre as I mentioned
