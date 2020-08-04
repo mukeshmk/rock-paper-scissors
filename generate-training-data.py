@@ -1,5 +1,6 @@
 import os
 import cv2
+import argparse
 
 # write your code here to open your laptop's camera
 # and store images for rock paper scissors
